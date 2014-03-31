@@ -1,0 +1,35 @@
+<header id="header">
+  <h1><%= @list.name %></h1>
+  <%#= form_for(@list.tasks.build, :url => list_tasks_path(@list)) do |f| %>
+  <%= form_for([@list, @task], :remote => true) do |f| %>
+    <%= f.text_field :description, 
+                     :id => "new-todo", 
+                     :placeholder => "What needs to be done?", 
+                     :autofocus => true %>
+  <% end %>
+</header>
+
+<section id="main">
+  <input id="toggle-all" type="checkbox" onclick="">
+
+  <label for="toggle-all">Mark all as complete</label>
+  <%= content_tag :ul, :data => {:id => @list.id}, :id => "todo-list" do %>
+    <%= render @list.tasks.order("created_at DESC") %> 
+  <% end %>
+</section>
+
+<footer id="footer">
+  <span id="todo-count"><strong>1</strong> item left</span>
+  <ul id="filters">
+    <li>
+      <a data-filter="all" href="#">All</a>
+    </li>
+    <li>
+      <a data-filter='active' href="#">Active</a>
+    </li>
+    <li>
+      <a data-filter='completed' href="#">Completed</a>
+    </li>
+  </ul>
+  <button id="clear-completed">Clear completed (1)</button>
+</footer>

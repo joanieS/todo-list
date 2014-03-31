@@ -1,0 +1,21 @@
+<header id="header">
+  <h1>Your Lists</h1>
+  <%= form_for(@list) do |f| %>
+    <%= f.text_field :name, :id => "new-todo", 
+                     :placeholder => "Make a new list", 
+                     :autofocus => true %>
+
+  <% end %>
+</header>
+<section id="main">
+  <ul id="todo-list">
+    <% @lists.each do |list| %>
+    <li>
+      <div class="view">
+        <label><%= link_to list.name, list %></label>
+        <button class="destroy"></button>
+      </div>          
+    </li>
+    <% end %>        
+  </ul>
+</section>

@@ -1,0 +1,11 @@
+<%= li_for_task(task) do %>
+  <div class="view">
+    <input class="toggle" type="checkbox" <%= "checked" if task.completed? %> />
+    <label><%= task.description %></label>
+    <%= button_to "✖", list_task_path(task.list, task), :class => "destroy task", :remote => true, :method => :delete %>
+
+  </div>          
+
+  <input value="<%= task.description %>" class="edit">
+<% end %>
+
